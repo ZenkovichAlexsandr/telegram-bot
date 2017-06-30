@@ -1,0 +1,34 @@
+buildscript {
+    ext.kotlin_version = '1.1.1'
+    ext.telegram_api_version = '3.0.2'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group 'azenkovich.bot'
+version '0.0.1'
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = 'com.azenkovich.bot.Runner'
+
+defaultTasks 'run'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.telegram:telegrambots:$telegram_api_version"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "3.1"
+    distributionUrl = "http://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip"
+}
