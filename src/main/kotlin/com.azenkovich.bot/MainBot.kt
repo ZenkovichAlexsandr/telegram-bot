@@ -6,7 +6,7 @@ import com.azenkovich.bot.configurations.BOT_USERNAME
 import org.telegram.telegrambots.api.methods.send.SendMessage
 import org.telegram.telegrambots.api.objects.Update
 import org.telegram.telegrambots.bots.TelegramLongPollingBot
-import java.util.Objects
+import java.util.*
 
 /**
  * @author alexsandr
@@ -26,6 +26,8 @@ class MainBot : TelegramLongPollingBot() {
         val parts = message.text.split(" ".toRegex(), 2)
 
         when(parts[0]) {
+            HELP_COMMAND ->
+                sendMessage(SendMessage(message.chatId, getCommands()))
             STATEMENTS_COMMAND ->
                     statementsBot.action(message.chatId, parts[1])
             else ->
